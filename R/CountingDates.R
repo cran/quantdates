@@ -40,14 +40,24 @@ difftime_leap_year=function(tfinal,tinitial,leapDatesIn=TRUE)  {
 difftime_business = function(tfinal,tinitial,wd=wdBOG){
   #' difftime_business
   #'
-  #' @author Diego Jara
+  #' @author Diego Jara and Juan Pablo Bermudez
   #'
   #' Function to count the number of business days between two dates.
   #'
   #' @param tinitial  Initial date, it must be a business day.
   #' @param tfinal  Final date, it must be a business day.
   #' @param wd  Vector of dates with business days. The default are the business
-  #' days of Bogota.
+  #' days of Bogota. See details
+  #' 
+  #' @details
+  #'  wd refers to the business days of a specific location:
+  #'  \itemize{
+  #'      \item wdNYGB for New York Government Bonds Market.
+  #'      \item wdNY for New York Stock Exchange Market.
+  #'      \item wdLDN for London.
+  #'      \item wdBOG for Bogota.
+  #' }
+  #' 
   #' @return Number of days between the specified dates.
   #'
   #' @examples
@@ -56,17 +66,22 @@ difftime_business = function(tfinal,tinitial,wd=wdBOG){
   #' difftime_business(tfinal=as.Date('2023-03-08'),tinitial=as.Date('2019-02-28'),wd=wdBOG)
   #' difftime_business(tfinal='2023-03-08',tinitial=as.Date('2019-02-28'),wd=wdLDN)
   #' difftime_business(tfinal='2023-03-08',tinitial='2019-02-28',wd=wdNY)
+  #' difftime_business(tfinal='2023-03-08',tinitial='2019-02-28',wd=wdNYGB)
   #'
   #' @export
-
+  
+  # Param validation
   if(!lubridate::is.Date(tfinal)) try(tfinal <- as.Date(tfinal),
-                           stop(paste0(deparse(sys.call()),': ',tfinal,' is not valid as Date.'),call. = FALSE))
+                                      stop(paste0(deparse(sys.call()),': ',tfinal,' is not valid as Date.'),call. = FALSE))
   if(!lubridate::is.Date(tinitial)) try(tinitial <- as.Date(tinitial),
-                             stop(paste0(deparse(sys.call()),': ',tinitial,' is not valid as Date.'),call. = FALSE))
+                                        stop(paste0(deparse(sys.call()),': ',tinitial,' is not valid as Date.'),call. = FALSE))
   if(is.null(wd)) stop(paste0(deparse(sys.call()),':',' wd is not provided'),call. = FALSE)
-
-
-  return( which(wd==tfinal)-which(wd==tinitial) )
+  if(!inherits(wd,'Date')) stop(paste0(deparse(sys.call()),':',' wd is not a date class vector'),call. = FALSE)
+  
+  if(!tfinal %in% wd) stop(paste0(deparse(sys.call()),':',' tfinal is not a business day in the provided vector.'),call. = FALSE)
+  if(!tinitial %in% wd) stop(paste0(deparse(sys.call()),':',' tinitial is not a business day in the provided vector.'),call. = FALSE)
+  
+  return(which(wd==tfinal)-which(wd==tinitial))
 }
 
 day_count = function(tfinal, tinitial, convention='ACT/365'){
@@ -103,7 +118,7 @@ day_count = function(tfinal, tinitial, convention='ACT/365'){
   #'     Also known as ACT/365 Fixed.
   #'
   #'     \item ACT/360.
-  #'     \deqn{DayCount = \frac{Days(tintial, tfinal)}{365}}
+  #'     \deqn{DayCount = \frac{Days(tintial, tfinal)}{360}}
   #'
   #'     \item ACT/365L.
   #'     \deqn{DayCount = \frac{Days(tintial, tfinal)}{DiY}}
@@ -152,19 +167,19 @@ day_count = function(tfinal, tinitial, convention='ACT/365'){
   #' International Swaps and Derivatives Association. (2006). 2006 ISDA definitions. New York, N.Y: International Swaps and Derivatives Association.
   #'
   #' @export
-
-
+  
+  ## Param validation
   if(!convention %in% c('ACT/365','ACT/360','ACT/365L','NL/365'
-                       ,'ACT/ACT-ISDA','ACT/ACT-AFB',
-                       '30/360')) stop('Invalid day count convention.')
-
+                        ,'ACT/ACT-ISDA','ACT/ACT-AFB',
+                        '30/360')) stop('Invalid day count convention.')
+  
   if(!lubridate::is.Date(tfinal)) try(tfinal <- as.Date(tfinal),
-                           stop(paste0(deparse(sys.call()),':',tfinal,' is not valid as Date.'),call. = FALSE))
+                                      stop(paste0(deparse(sys.call()),':',tfinal,' is not valid as Date.'),call. = FALSE))
   if(!lubridate::is.Date(tinitial)) try(tinitial <- as.Date(tinitial),
-                             stop(paste0(deparse(sys.call()),':',tinitial,' is not valid as Date.'),call. = FALSE))
-
-
-
+                                        stop(paste0(deparse(sys.call()),':',tinitial,' is not valid as Date.'),call. = FALSE))
+  
+  
+  
   if(convention %in% c('ACT/365','ACT/360','NL/365')){
     leapDatesIn <- convention!='NL/365'
     return(.day_count_ACT_FIX(tfinal, tinitial, convention, leapDatesIn))
@@ -179,8 +194,6 @@ day_count = function(tfinal, tinitial, convention='ACT/365'){
   }else{
     # Never
   }
-
-
 }
 
 .day_count_ACT_FIX <- function(tfinal, tinitial, convention,...){

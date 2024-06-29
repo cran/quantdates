@@ -12,7 +12,7 @@
 
 <meta name="author" content="Julian Chitiva" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2024-06-28" />
 
 <title>quantdates</title>
 
@@ -29,317 +29,26 @@ document.addEventListener('DOMContentLoaded', function(e) {
   }
 });
 </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rstudio/markdown/inst/resources/prism-xcode.css" data-external="1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yihui/knitr/inst/misc/vignette.css" data-external="1">
+<script src="https://cdn.jsdelivr.net/combine/npm/@xiee/utils/js/code-lang.min.js,npm/@xiee/utils/js/number-captions.min.js,npm/prismjs@1.29.0/components/prism-core.min.js" data-external="1" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" data-external="1" defer></script>
 
-
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
 </style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 
 
 
-<style type="text/css">body {
-background-color: #fff;
-margin: 1em auto;
-max-width: 800px;
-overflow: visible;
-padding-left: 2em;
-padding-right: 2em;
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
-line-height: 20px;
-}
-#header {
-text-align: center;
-}
-#TOC {
-clear: both;
-margin: 0 0 10px 0;
-padding: 4px;
-border: 1px solid #CCCCCC;
-border-radius: 5px;
-background-color: #f6f6f6;
-font-size: 13px;
-line-height: 1.3;
-}
-#TOC .toctitle {
-font-weight: bold;
-font-size: 15px;
-margin-left: 5px;
-}
-#TOC ul {
-padding-left: 40px;
-margin-left: -1.5em;
-margin-top: 5px;
-margin-bottom: 5px;
-}
-#TOC ul ul {
-margin-left: -2em;
-}
-#TOC li {
-line-height: 16px;
-}
-table:not([class]) {
-margin: auto;
-min-width: 40%;
-border-width: 1px;
-border-color: #DDDDDD;
-border-style: outset;
-border-collapse: collapse;
-}
-table[summary="R argblock"] {
-width: 100%;
-border: none;
-}
-table:not([class]) th {
-border-width: 2px;
-padding: 5px;
-border-style: inset;
-}
-table:not([class]) td {
-border-width: 1px;
-border-style: inset;
-line-height: 18px;
-padding: 5px 5px;
-}
-table:not([class]), table:not([class]) th, table:not([class]) td {
-border-left-style: none;
-border-right-style: none;
-}
-table:not([class]) tr.odd {
-background-color: #f7f7f7;
-}
-p {
-margin: 0.5em 0;
-}
-blockquote {
-background-color: #f6f6f6;
-padding: 13px;
-padding-bottom: 1px;
-}
-hr {
-border-style: solid;
-border: none;
-border-top: 1px solid #777;
-margin: 28px 0;
-}
-dl {
-margin-left: 0;
-}
-dl dd {
-margin-bottom: 13px;
-margin-left: 13px;
-}
-dl dt {
-font-weight: bold;
-}
-ul {
-margin-top: 0;
-}
-ul li {
-list-style: circle outside;
-}
-ul ul {
-margin-bottom: 0;
-}
-pre, code {
-background-color: #f5f5f5;
-border-radius: 3px;
-color: #333;
-}
-pre {
-overflow-x: auto;
-border-radius: 3px;
-margin: 5px 0 10px 0;
-padding: 10px;
-}
-pre:not([class]) {
-background-color: white;
-border: #f5f5f5 1px solid;
-}
-pre:not([class]) code {
-color: #444;
-background-color: white;
-}
-code {
-font-family: monospace;
-font-size: 90%;
-}
-p > code, li > code {
-padding: 2px 4px;
-color: #d14;
-border: 1px solid #e1e1e8;
-white-space: inherit;
-}
-div.figure {
-text-align: center;
-}
-table > caption, div.figure p.caption {
-font-style: italic;
-}
-table > caption span, div.figure p.caption span {
-font-style: normal;
-font-weight: bold;
-}
-p {
-margin: 0 0 10px;
-}
-table:not([class]) {
-margin: auto auto 10px auto;
-}
-img:not([class]) {
-background-color: #FFFFFF;
-padding: 2px;
-border-radius: 3px;
-border: 1px solid #CCCCCC;
-margin: 0 5px;
-max-width: 100%;
-}
-h1 {
-margin-top: 0;
-font-size: 35px;
-line-height: 40px;
-}
-h2 {
-border-bottom: 4px solid #f5f5f5;
-padding-top: 10px;
-padding-bottom: 2px;
-font-size: 145%;
-}
-h3 {
-border-bottom: 2px solid #f5f5f5;
-padding-top: 10px;
-font-size: 120%;
-}
-h4 {
-border-bottom: 1px solid #f5f5f5;
-margin-left: 8px;
-font-size: 105%;
-}
-h5, h6 {
-border-bottom: 1px solid #ccc;
-font-size: 105%;
-}
-a {
-color: #0033dd;
-text-decoration: none;
-}
-a:hover {
-color: #6666ff; }
-a:visited {
-color: #800080; }
-a:visited:hover {
-color: #BB00BB; }
-a[href^="http:"] {
-text-decoration: underline; }
-a[href^="https:"] {
-text-decoration: underline; }
-div.r-help-page {
-background-color: #f9f9f9;
-border-bottom: #ddd 1px solid;
-margin-bottom: 10px;
-padding: 10px;
-}
-div.r-help-page:hover {
-background-color: #f4f4f4;
-}
 
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; } 
-code > span.er { color: #a61717; background-color: #e3d2d2; } 
-</style>
+
+
+
 
 
 
@@ -353,79 +62,89 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">quantdates</h1>
 <h4 class="author">Julian Chitiva</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2024-06-28</h4>
 
 
 <div id="TOC">
 <ul>
-<li><a href="#dates-manipulation">Dates Manipulation</a>
+<li><a href="#dates-manipulation" id="toc-dates-manipulation">Dates
+Manipulation</a>
 <ul>
-<li><a href="#add-date">Add Date</a></li>
-<li><a href="#add-business-days">Add Business Days</a></li>
-<li><a href="#last-day-of-month">Last Day of Month</a></li>
-<li><a href="#business-days">Business Days</a></li>
-<li><a href="#num-to-date">Num to Date</a></li>
+<li><a href="#add-date" id="toc-add-date">Add Date</a></li>
+<li><a href="#add-business-days" id="toc-add-business-days">Add Business
+Days</a></li>
+<li><a href="#last-day-of-month" id="toc-last-day-of-month">Last Day of
+Month</a></li>
+<li><a href="#business-days" id="toc-business-days">Business
+Days</a></li>
+<li><a href="#num-to-date" id="toc-num-to-date">Num to Date</a></li>
 </ul></li>
-<li><a href="#counting-dates">Counting Dates</a>
+<li><a href="#counting-dates" id="toc-counting-dates">Counting Dates</a>
 <ul>
-<li><a href="#difftime">Difftime</a></li>
-<li><a href="#difftime-in-business-days">Difftime in Business Days</a></li>
-<li><a href="#day-count">Day Count</a></li>
+<li><a href="#difftime" id="toc-difftime">Difftime</a></li>
+<li><a href="#difftime-in-business-days" id="toc-difftime-in-business-days">Difftime in Business Days</a></li>
+<li><a href="#day-count" id="toc-day-count">Day Count</a></li>
 </ul></li>
 </ul>
 </div>
 
-<p>This package is a R library that provides the user to work with dates and days count for financial analysis. It works with business days from New York (US), London (UK) and Bogota (CO). It also implements day counting using common financial conventions such as ACT/360, ACT/365, ACT/ACT and 30/360, among others.</p>
+<p>This package is a R library that provides the user to work with dates
+and days count for financial analysis. It works with business days from
+New York (US), London (UK) and Bogota (CO). It also implements day
+counting using common financial conventions such as ACT/360, ACT/365,
+ACT/ACT and 30/360, among others.</p>
 <div id="dates-manipulation" class="section level2">
 <h2>Dates Manipulation</h2>
-<p>This part implement functions for dates manipulation such as add days (business days) to a date, transform dates between various formats and obtain business days for a given city calendar.</p>
+<p>This part implement functions for dates manipulation such as add days
+(business days) to a date, transform dates between various formats and
+obtain business days for a given city calendar.</p>
 <div id="add-date" class="section level3">
 <h3>Add Date</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">AddDate</span>(<span class="dt">date =</span> <span class="kw">Sys.Date</span>(),<span class="dt">addDays=</span><span class="dv">14</span>,<span class="dt">addMonths=</span><span class="dv">2</span>,<span class="dt">addYears=</span><span class="dv">3</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#&gt; [1] &quot;2023-08-19&quot;</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">AddDate</span>(<span class="dt">date =</span> <span class="st">&#39;2019-10-04&#39;</span>,<span class="dt">addDays=</span><span class="dv">14</span>,<span class="dt">addMonths=</span><span class="dv">2</span>,<span class="dt">addYears=</span><span class="dv">3</span>)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt; [1] &quot;2022-12-18&quot;</span></span></code></pre></div>
+<pre class="r"><code>AddDate(date = Sys.Date(),addDays=14,addMonths=2,addYears=3)
+#&gt; [1] &quot;2027-09-12&quot;</code></pre>
+<pre class="r"><code>AddDate(date = &#39;2019-10-04&#39;,addDays=14,addMonths=2,addYears=3)
+#&gt; [1] &quot;2022-12-18&quot;</code></pre>
 </div>
 <div id="add-business-days" class="section level3">
 <h3>Add Business Days</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">AddBusinessDays</span>(<span class="dt">date =</span> <span class="kw">Sys.Date</span>(),<span class="dt">numDate =</span> <span class="dv">15</span>,<span class="dt">loc =</span> <span class="st">&#39;NY&#39;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#&gt; [1] &quot;2020-06-26&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">AddBusinessDays</span>(<span class="dt">date =</span> <span class="st">&#39;2020-10-03&#39;</span>,<span class="dt">numDate =</span> <span class="dv">15</span>,<span class="dt">loc =</span> <span class="st">&#39;NY&#39;</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; [1] &quot;2020-10-26&quot;</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">AddBusinessDays</span>(<span class="dt">date =</span> <span class="kw">Sys.Date</span>(),<span class="dt">numDate =</span> <span class="dv">15</span>,<span class="dt">loc =</span> <span class="st">&#39;BOG&#39;</span>)</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; [1] &quot;2020-07-01&quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">AddBusinessDays</span>(<span class="dt">date =</span> <span class="kw">Sys.Date</span>(),<span class="dt">numDate =</span> <span class="dv">15</span>,<span class="dt">loc =</span> <span class="st">&#39;LDN&#39;</span>)</span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; [1] &quot;2020-06-26&quot;</span></span></code></pre></div>
+<pre class="r"><code>AddBusinessDays(date = Sys.Date(),numDate = 15,loc = &#39;NY&#39;)
+#&gt; [1] &quot;2024-07-22&quot;</code></pre>
+<pre class="r"><code>AddBusinessDays(date = &#39;2020-10-03&#39;,numDate = 15,loc = &#39;NY&#39;)
+#&gt; [1] &quot;2020-10-23&quot;</code></pre>
+<pre class="r"><code>AddBusinessDays(date = Sys.Date(),numDate = 15,loc = &#39;BOG&#39;)
+#&gt; [1] &quot;2024-07-22&quot;</code></pre>
+<pre class="r"><code>AddBusinessDays(date = Sys.Date(),numDate = 15,loc = &#39;LDN&#39;)
+#&gt; [1] &quot;2024-07-19&quot;</code></pre>
 </div>
 <div id="last-day-of-month" class="section level3">
 <h3>Last Day of Month</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">LastDayOfMonth</span>(<span class="dt">year =</span> <span class="dv">2020</span>, <span class="dt">month =</span> <span class="dv">2</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; [1] &quot;2020-02-29&quot;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">LastDayOfMonth</span>(<span class="dt">year =</span> <span class="dv">2024</span>, <span class="dt">month =</span> <span class="dv">5</span>)</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; [1] &quot;2024-05-31&quot;</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="kw">LastDayOfMonth</span>(<span class="dt">date =</span> <span class="st">&#39;2020-02-03&#39;</span>)</span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; [1] &quot;2020-02-29&quot;</span></span></code></pre></div>
+<pre class="r"><code>LastDayOfMonth(year = 2020, month = 2)
+#&gt; [1] &quot;2020-02-29&quot;</code></pre>
+<pre class="r"><code>LastDayOfMonth(year = 2024, month = 5)
+#&gt; [1] &quot;2024-05-31&quot;</code></pre>
+<pre class="r"><code>LastDayOfMonth(date = &#39;2020-02-03&#39;)
+#&gt; [1] &quot;2020-02-29&quot;</code></pre>
 </div>
 <div id="business-days" class="section level3">
 <h3>Business Days</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">BusinessDays</span>(<span class="dt">loc=</span><span class="st">&#39;BOG&#39;</span>)[<span class="dv">2500</span><span class="op">:</span><span class="dv">2520</span>]</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt;  [1] &quot;2021-03-26&quot; &quot;2021-03-29&quot; &quot;2021-03-30&quot; &quot;2021-03-31&quot; &quot;2021-04-05&quot;</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt;  [6] &quot;2021-04-06&quot; &quot;2021-04-07&quot; &quot;2021-04-08&quot; &quot;2021-04-09&quot; &quot;2021-04-12&quot;</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; [11] &quot;2021-04-13&quot; &quot;2021-04-14&quot; &quot;2021-04-15&quot; &quot;2021-04-16&quot; &quot;2021-04-19&quot;</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; [16] &quot;2021-04-20&quot; &quot;2021-04-21&quot; &quot;2021-04-22&quot; &quot;2021-04-23&quot; &quot;2021-04-26&quot;</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; [21] &quot;2021-04-27&quot;</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="kw">BusinessDays</span>(<span class="dt">loc=</span><span class="st">&#39;BOG&#39;</span>, <span class="dt">from=</span><span class="st">&#39;2020-10-10&#39;</span>, <span class="dt">to=</span><span class="st">&#39;2020-11-10&#39;</span>)</span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt;  [1] &quot;2020-10-13&quot; &quot;2020-10-14&quot; &quot;2020-10-15&quot; &quot;2020-10-16&quot; &quot;2020-10-19&quot;</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt;  [6] &quot;2020-10-20&quot; &quot;2020-10-21&quot; &quot;2020-10-22&quot; &quot;2020-10-23&quot; &quot;2020-10-26&quot;</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt; [11] &quot;2020-10-27&quot; &quot;2020-10-28&quot; &quot;2020-10-29&quot; &quot;2020-10-30&quot; &quot;2020-11-03&quot;</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt; [16] &quot;2020-11-04&quot; &quot;2020-11-05&quot; &quot;2020-11-06&quot; &quot;2020-11-09&quot; &quot;2020-11-10&quot;</span></span></code></pre></div>
+<pre class="r"><code>BusinessDays(loc=&#39;BOG&#39;)[2500:2520]
+#&gt;  [1] &quot;2000-03-15&quot; &quot;2000-03-16&quot; &quot;2000-03-17&quot; &quot;2000-03-21&quot; &quot;2000-03-22&quot;
+#&gt;  [6] &quot;2000-03-23&quot; &quot;2000-03-24&quot; &quot;2000-03-27&quot; &quot;2000-03-28&quot; &quot;2000-03-29&quot;
+#&gt; [11] &quot;2000-03-30&quot; &quot;2000-03-31&quot; &quot;2000-04-03&quot; &quot;2000-04-04&quot; &quot;2000-04-05&quot;
+#&gt; [16] &quot;2000-04-06&quot; &quot;2000-04-07&quot; &quot;2000-04-10&quot; &quot;2000-04-11&quot; &quot;2000-04-12&quot;
+#&gt; [21] &quot;2000-04-13&quot;</code></pre>
+<pre class="r"><code>BusinessDays(loc=&#39;BOG&#39;, from=&#39;2020-10-10&#39;, to=&#39;2020-11-10&#39;)
+#&gt;  [1] &quot;2020-10-13&quot; &quot;2020-10-14&quot; &quot;2020-10-15&quot; &quot;2020-10-16&quot; &quot;2020-10-19&quot;
+#&gt;  [6] &quot;2020-10-20&quot; &quot;2020-10-21&quot; &quot;2020-10-22&quot; &quot;2020-10-23&quot; &quot;2020-10-26&quot;
+#&gt; [11] &quot;2020-10-27&quot; &quot;2020-10-28&quot; &quot;2020-10-29&quot; &quot;2020-10-30&quot; &quot;2020-11-03&quot;
+#&gt; [16] &quot;2020-11-04&quot; &quot;2020-11-05&quot; &quot;2020-11-06&quot; &quot;2020-11-09&quot; &quot;2020-11-10&quot;</code></pre>
 </div>
 <div id="num-to-date" class="section level3">
 <h3>Num to Date</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">NumR2DateR</span>(<span class="kw">as.numeric</span>(<span class="kw">Sys.Date</span>()))</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt; [1] &quot;2020-06-05&quot;</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">NumExcel2DateR</span>(<span class="kw">as.numeric</span>(<span class="kw">Sys.Date</span>()))</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt; [1] &quot;1950-06-04&quot;</span></span></code></pre></div>
+<pre class="r"><code>NumR2DateR(as.numeric(Sys.Date()))
+#&gt; [1] &quot;2024-06-28&quot;</code></pre>
+<pre class="r"><code>NumExcel2DateR(as.numeric(Sys.Date()))
+#&gt; [1] &quot;1954-06-27&quot;</code></pre>
 </div>
 </div>
 <div id="counting-dates" class="section level2">
@@ -433,61 +152,41 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>This section shows the usage of day count functions.</p>
 <div id="difftime" class="section level3">
 <h3>Difftime</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">difftime_leap_year</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-05&#39;</span>,<span class="dt">tinitial=</span><span class="st">&#39;2019-02-28&#39;</span>,<span class="dt">leapDatesIn=</span><span class="ot">TRUE</span>)</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&gt; [1] 1466</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">difftime_leap_year</span>(<span class="dt">tfinal=</span><span class="kw">as.Date</span>(<span class="st">&#39;2023-03-05&#39;</span>),<span class="dt">tinitial=</span><span class="kw">as.Date</span>(<span class="st">&#39;2019-02-28&#39;</span>),<span class="dt">leapDatesIn=</span><span class="ot">TRUE</span>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; [1] 1466</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="kw">difftime_leap_year</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-05&#39;</span>,<span class="dt">tinitial=</span><span class="st">&#39;2019-02-28&#39;</span>,<span class="dt">leapDatesIn=</span><span class="ot">FALSE</span>)</span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt; [1] 1465</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="kw">difftime_leap_year</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-05&#39;</span>,<span class="dt">tinitial=</span><span class="kw">as.Date</span>(<span class="st">&#39;2019-02-28&#39;</span>),<span class="dt">leapDatesIn=</span><span class="ot">FALSE</span>)</span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; [1] 1465</span></span></code></pre></div>
+<pre class="r"><code>difftime_leap_year(tfinal=&#39;2023-03-05&#39;,tinitial=&#39;2019-02-28&#39;,leapDatesIn=TRUE)
+#&gt; [1] 1466</code></pre>
+<pre class="r"><code>difftime_leap_year(tfinal=as.Date(&#39;2023-03-05&#39;),tinitial=as.Date(&#39;2019-02-28&#39;),leapDatesIn=TRUE)
+#&gt; [1] 1466</code></pre>
+<pre class="r"><code>difftime_leap_year(tfinal=&#39;2023-03-05&#39;,tinitial=&#39;2019-02-28&#39;,leapDatesIn=FALSE)
+#&gt; [1] 1465</code></pre>
+<pre class="r"><code>difftime_leap_year(tfinal=&#39;2023-03-05&#39;,tinitial=as.Date(&#39;2019-02-28&#39;),leapDatesIn=FALSE)
+#&gt; [1] 1465</code></pre>
 </div>
 <div id="difftime-in-business-days" class="section level3">
 <h3>Difftime in Business Days</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">difftime_business</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-08&#39;</span>,<span class="dt">tinitial=</span><span class="st">&#39;2019-02-28&#39;</span>,<span class="dt">wd=</span>wdBOG)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; [1] 988</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">difftime_business</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-08&#39;</span>,<span class="dt">tinitial=</span><span class="st">&#39;2019-02-28&#39;</span>,<span class="dt">wd=</span>wdLDN)</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; [1] 1023</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="kw">difftime_business</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-08&#39;</span>,<span class="dt">tinitial=</span><span class="st">&#39;2019-02-28&#39;</span>,<span class="dt">wd=</span>wdNY)</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; [1] 1016</span></span></code></pre></div>
+<pre class="r"><code>difftime_business(tfinal=&#39;2023-03-08&#39;,tinitial=&#39;2019-02-28&#39;,wd=wdBOG)
+#&gt; [1] 988</code></pre>
+<pre class="r"><code>difftime_business(tfinal=&#39;2023-03-08&#39;,tinitial=&#39;2019-02-28&#39;,wd=wdLDN)
+#&gt; [1] 1015</code></pre>
+<pre class="r"><code>difftime_business(tfinal=&#39;2023-03-08&#39;,tinitial=&#39;2019-02-28&#39;,wd=wdNY)
+#&gt; [1] 1013</code></pre>
 </div>
 <div id="day-count" class="section level3">
 <h3>Day Count</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">day_count</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-08&#39;</span>,<span class="dt">tinitial=</span><span class="st">&#39;2019-02-28&#39;</span>,<span class="dt">convention=</span><span class="st">&#39;ACT/365&#39;</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co">#&gt; [1] 4.024658</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="kw">day_count</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-08&#39;</span>,<span class="dt">tinitial=</span><span class="st">&#39;2019-02-28&#39;</span>,<span class="dt">convention=</span><span class="st">&#39;ACT/360&#39;</span>)</span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt; [1] 4.080556</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="kw">day_count</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-08&#39;</span>,<span class="dt">tinitial=</span><span class="st">&#39;2019-02-28&#39;</span>,<span class="dt">convention=</span><span class="st">&#39;30/360&#39;</span>)</span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt; [1] 4.027778</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="kw">day_count</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-08&#39;</span>,<span class="dt">tinitial=</span><span class="st">&#39;2019-02-28&#39;</span>,<span class="dt">convention=</span><span class="st">&#39;NL/365&#39;</span>)</span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; [1] 4.021918</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="kw">day_count</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-08&#39;</span>,<span class="dt">tinitial=</span><span class="st">&#39;2019-02-28&#39;</span>,<span class="dt">convention=</span><span class="st">&#39;ACT/ACT-ISDA&#39;</span>)</span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">#&gt; [1] 4.024658</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="kw">day_count</span>(<span class="dt">tfinal=</span><span class="st">&#39;2023-03-08&#39;</span>,<span class="dt">tinitial=</span><span class="st">&#39;2019-02-28&#39;</span>,<span class="dt">convention=</span><span class="st">&#39;ACT/ACT-AFB&#39;</span>)</span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="co">#&gt; [1] 4.019178</span></span></code></pre></div>
+<pre class="r"><code>day_count(tfinal=&#39;2023-03-08&#39;,tinitial=&#39;2019-02-28&#39;,convention=&#39;ACT/365&#39;)
+#&gt; [1] 4.024658</code></pre>
+<pre class="r"><code>day_count(tfinal=&#39;2023-03-08&#39;,tinitial=&#39;2019-02-28&#39;,convention=&#39;ACT/360&#39;)
+#&gt; [1] 4.080556</code></pre>
+<pre class="r"><code>day_count(tfinal=&#39;2023-03-08&#39;,tinitial=&#39;2019-02-28&#39;,convention=&#39;30/360&#39;)
+#&gt; [1] 4.027778</code></pre>
+<pre class="r"><code>day_count(tfinal=&#39;2023-03-08&#39;,tinitial=&#39;2019-02-28&#39;,convention=&#39;NL/365&#39;)
+#&gt; [1] 4.021918</code></pre>
+<pre class="r"><code>day_count(tfinal=&#39;2023-03-08&#39;,tinitial=&#39;2019-02-28&#39;,convention=&#39;ACT/ACT-ISDA&#39;)
+#&gt; [1] 4.024658</code></pre>
+<pre class="r"><code>day_count(tfinal=&#39;2023-03-08&#39;,tinitial=&#39;2019-02-28&#39;,convention=&#39;ACT/ACT-AFB&#39;)
+#&gt; [1] 4.019178</code></pre>
 </div>
 </div>
 
-<script type="text/javascript">
-window.onload = function() {
-  var i, fig = 1, caps = document.getElementsByClassName('caption');
-  for (i = 0; i < caps.length; i++) {
-    var cap = caps[i];
-    if (cap.parentElement.className !== 'figure' || cap.nodeName !== 'P')
-      continue;
-    cap.innerHTML = '<span>Figure ' + fig + ':</span> ' + cap.innerHTML;
-    fig++;
-  }
-  fig = 1;
-  caps = document.getElementsByTagName('caption');
-  for (i = 0; i < caps.length; i++) {
-    var cap = caps[i];
-    if (cap.parentElement.nodeName !== 'TABLE') continue;
-    cap.innerHTML = '<span>Table ' + fig + ':</span> ' + cap.innerHTML;
-    fig++;
-  }
-}
-</script>
 
 
 <!-- code folding -->

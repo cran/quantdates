@@ -1,15 +1,14 @@
 AddDate=function(date = Sys.Date(),addDays=0,addMonths=0,addYears=0)  {
   #' AddDate
-  #' @author Julian Chitiva and Diego Jara
+  #' @author Julian Chitiva, Diego Jara and Juan Pablo Bermudez
   #' @description
   #' Function to add a number of days, months and years to a specific date.
-  #' The length of addDays, addMonths and addYears must be the same.
-  #'
+  #' 
   #' @param date  Initial date.
   #' @param addDays  If specified, vector number of days to add to the initial date.
   #' @param addMonths  If specified, vector number of months to add to the initial date.
   #' @param addYears  If specified, vector number of years to add to the initial date.
-  #' @return The output is the final date after adding the number of days, months and years to the initial date.
+  #' @return The output is a vector of final dates after adding the number of days, months and years to the initial date.
   #'
   #' @examples
   #' # Date input as Date object
@@ -17,24 +16,27 @@ AddDate=function(date = Sys.Date(),addDays=0,addMonths=0,addYears=0)  {
   #'
   #' # Date input as character object
   #' AddDate(date = '2019-10-04',addDays=14,addMonths=2,addYears=3)
+  #' 
+  #' # Date vectors to add to initial date
+  #' AddDate(Sys.Date(), addDays = c(1,2), addMonths = c(4,5),addYears = c(5,6))
   #'
   #' @export
-
+  
   ## Param validation
   if(!lubridate::is.Date(date)){
     try(date <- as.Date(date),
         stop(paste0(deparse(sys.call()),':',date,' is not valid as Date.'),call. = FALSE))
   }
-  if(suppressWarnings(is.na(as.numeric(addDays)))){
+  if(suppressWarnings(any(is.na(as.numeric(addDays))))){
     stop(paste0(deparse(sys.call()),':',addDays,' is not valid amount to add.'),call. = FALSE)
   }
-  if(suppressWarnings(is.na(as.numeric(addMonths)))){
+  if(suppressWarnings(any(is.na(as.numeric(addMonths))))){
     stop(paste0(deparse(sys.call()),':',addMonths,' is not valid amount to add.'),call. = FALSE)
   }
-  if(suppressWarnings(is.na(as.numeric(addYears)))){
-    stop(paste0(deparse(sys.call()),':',addMonths,' is not valid amount to add.'),call. = FALSE)
+  if(suppressWarnings(any(is.na(as.numeric(addYears))))){
+    stop(paste0(deparse(sys.call()),':',addYears,' is not valid amount to add.'),call. = FALSE)
   }
-
+  
   ## Function
   date=lubridate::add_with_rollback(date, lubridate::days(addDays), roll_to_first = FALSE, preserve_hms = TRUE)
   date=lubridate::add_with_rollback(date, months(addMonths), roll_to_first = FALSE, preserve_hms = TRUE)
@@ -42,26 +44,28 @@ AddDate=function(date = Sys.Date(),addDays=0,addMonths=0,addYears=0)  {
   return(date)
 }
 
-AddBusinessDays=function(date = Sys.Date(), numDate,
-                         loc="BOG")  {
+AddBusinessDays=function(date = Sys.Date(), numDate, loc="BOG")  {
   #' AddBusinessDays
-  #' @author Diego Jara
+  #' @author Diego Jara and Juan Pablo Bermudez
   #' @description
   #' Function to add a number of business days to a specific date. Currently the function work for
-  #' returning values between 2000 and 2030.
+  #' returning values between 1990 and 2100.
   #'
   #' @param date  Initial date, the default is set to the date returned by Sys.Date().
-  #' @param numDate  Number of dates to be add (positive or negative).
+  #' @param numDate Number of dates to be add (positive or negative).
   #' @param loc  String that determines the location for business days. See details.
   #'
   #' @details
   #'  loc refers to the location for business days:
   #'  \itemize{
-  #'      \item NY for New York.
+  #'      \item NY for New York Stock Exchange Market.
+  #'      \item NYGB for New York Government Bonds Market.
   #'      \item LDN for London.
-  #'      \item NYLDN for the intersection of business days in New York and London.
+  #'      \item NYLDN for the intersection of business days in New York Stock Exchange and London.
+  #'      \item NYGBLDN for the intersection of business days in New York Government Bond and London.
   #'      \item BOG for Bogota.
-  #'      \item BOGNY for the intersection of business days in Bogota and New York.
+  #'      \item BOGNY for the intersection of business days in Bogota and New York Government Bond.
+  #'      \item BOGNYGB for the intersection of business days in Bogota and New York Stock Exchange.
   #' }
   #'
   #' @return The output is the final date after adding the number of business dates to the initial date.
@@ -76,28 +80,32 @@ AddBusinessDays=function(date = Sys.Date(), numDate,
   #' AddBusinessDays(date = as.character(Sys.Date()),numDate = 15,loc = 'BOG')
   #'
   #' @export
-
+  
   ## Param validation
   if(!lubridate::is.Date(date)){
     try(date <- as.Date(date),
         stop(paste0(deparse(sys.call()),':',date,' is not valid as Date.'),call. = FALSE))
   }
-
-  if(!loc %in% c('NY','BOG','LDN','NYLDN','BOGNY')) stop('Invalid loc parameter.')
-
+  
+  if(!loc %in% c('NY','NYGB','BOG','LDN','NYLDN','NYGBLDN','BOGNY','BOGNYGB')) stop('Invalid loc parameter.')
+  
   ## Function
-
-  if(loc=="NY") {workDays=wdNY; NumLab=julian(workDays)}
-  else if(loc=="LDN") {workDays=wdLDN; NumLab=julian(workDays)}
+  
+  if(loc=="NY")         {workDays=wdNY; NumLab=julian(workDays)}
+  else if(loc=='NYGB')    {workDays=wdNYGB; NumLab=julian(workDays)}
+  else if(loc=="BOG")     {workDays=wdBOG; NumLab=julian(workDays)}
+  else if(loc=="LDN")     {workDays=wdLDN; NumLab=julian(workDays)}
   else if(loc=="NYLDN") {workDays=wdLDN;temp1=julian(wdNY);temp2=julian(workDays);NumLab=intersect(temp1,temp2)}
-  else if(loc=="BOG") {workDays=wdBOG; NumLab=julian(workDays)}
+  else if(loc=="NYGBLDN") {workDays=wdLDN;temp1=julian(wdNYGB);temp2=julian(workDays);NumLab=intersect(temp1,temp2)}  
   else if(loc=="BOGNY") {workDays=wdBOG;temp1=julian(wdNY);temp2=julian(workDays);NumLab=intersect(temp1,temp2)}
-
-  Periodo<-seq(from = date, to = date+numDate+10, "day")
-  temp1=julian(Periodo)
-  pos=min(which(NumLab>=(temp1[1])))
+  else if(loc=="BOGNYGB") {workDays=wdBOG;temp1=julian(wdNYGB);temp2=julian(workDays);NumLab=intersect(temp1,temp2)}
+  
+  Periodo <- seq(from = date, to = date+numDate+10, "day")
+  temp1   <- julian(Periodo)
+  pos     <- min(which(NumLab>=(temp1[1])))
   if(numDate>0 && NumLab[pos]>(temp1[1])) {numDate=numDate-1}
   initialDate <- NumLab[pos+numDate]
+  if(is.na(initialDate)) stop('There is not enough data to return a business date given the parameters. \n Try reducing the number of days to be added') 
   return(as.Date(initialDate:initialDate,origin="1970-01-01"))
 }
 
@@ -143,26 +151,29 @@ LastDayOfMonth=function (year, month, date=NULL) {
 BusinessDays = function(loc='BOG', from=NULL, to=NULL){
   #' BusinessDays
   #'
-  #' @author Diego Jara and Julian Chitiva
+  #' @author Diego Jara, Julian Chitiva and Juan Pablo Bermudez
   #'
   #' @description
-  #' Calculate business days for a given location. Data availability
-  #' depends on the location.
+  #' Calculate business days for a given location. Currently, data availability
+  #' goes from 1990 to 2100.
   #'
   #' @param loc  String that determines the location for business days. See details.
   #' @param from  If provided returns available business dates after this date (inclusive).
   #' @param to  If provided returns available business dates until this date (inclusive).
   #'
-  #' @return Vector of business days. Data availability depends on the location.
+  #' @return Vector of business days. Data availability from 1990 up to 2100.
   #'
   #' @details
   #'  loc refers to the location for business days:
   #'  \itemize{
-  #'      \item NY for New York.
+  #'      \item NYGB for New York Government Bonds Market.
+  #'      \item NY for New York Stock Exchange Market.
   #'      \item LDN for London.
-  #'      \item NYLDN for the intersection of business days in New York and London.
+  #'      \item NYLDN for the intersection of business days in New York Stock Exchange and London.
+  #'      \item NYGBLDN for the intersection of business days in New York Government Bond and London.
   #'      \item BOG for Bogota.
-  #'      \item BOGNY for the intersection of business days in Bogota and New York.
+  #'      \item BOGNY for the intersection of business days in Bogota and New York Government Bond.
+  #'      \item BOGNYGB for the intersection of business days in Bogota and New York Stock Exchange.
   #' }
   #'
   #'
@@ -178,44 +189,47 @@ BusinessDays = function(loc='BOG', from=NULL, to=NULL){
   #' # Dates
   #' BusinessDays(loc='BOG', from=as.Date('2020-10-10'), to='2020-11-10')
   #'
-  #' # Returns all available business days for the locatio after given
+  #' # Returns all available business days for the location after given
   #' # 'from' date as character
   #' BusinessDays(loc='BOG', from='2020-10-10')
   #'
   #' @export
-
+  
   ## Param validation
   if(!is.null(from)){
     if(!lubridate::is.Date(from)){
       try(date <- as.Date(from),
-          stop(paste0(deparse(sys.call()),':',from,' is not valid as Date.'),call. = FALSE))
+          stop(paste0(deparse(sys.call()),': ',from,' is not valid as Date.'),call. = FALSE))
     }
   }
   if(!is.null(to)){
     if(!lubridate::is.Date(to)){
       try(date <- as.Date(to),
-          stop(paste0(deparse(sys.call()),':',to,' is not valid as Date.'),call. = FALSE))
+          stop(paste0(deparse(sys.call()),': ',to,' is not valid as Date.'),call. = FALSE))
     }
   }
-
-
-  if(!loc %in% c('NY','BOG','LDN','NYLDN','BOGNY')) stop('Invalid loc parameter.')
-
-
+  
+  
+  if(!loc %in% c('NY','NYGB','BOG','LDN','NYLDN','NYGBLDN','BOGNY','BOGNYGB')) stop('Invalid loc parameter.')
+  
+  
   ## Function
   if(loc=='BOG'){holiDays=holiDaysBOG}
   else if(loc=='NY'){holiDays=holiDaysNY}
+  else if(loc=='NYGB'){holiDays=holiDaysNYGB}
   else if(loc=='LDN'){holiDays=holiDaysLDN}
   else if(loc=='NYLDN'){holiDays=c(holiDaysLDN,holiDaysNY);holiDays=holiDays[order(holiDays)]}
+  else if(loc=='NYGBLDN'){holiDays=c(holiDaysLDN,holiDaysNYGB);holiDays=holiDays[order(holiDays)]}
   else if(loc=='BOGNY'){holiDays=c(holiDaysBOG,holiDaysNY);holiDays=holiDays[order(holiDays)]}
-
+  else if(loc=='BOGNYGB'){holiDays=c(holiDaysBOG,holiDaysNYGB);holiDays=holiDays[order(holiDays)]}
+  
   dates = seq(holiDays[1],max(holiDays),by = "day")
   dates = setdiff(dates,holiDays)
-  dates  = as.Date(dates,origin="1970-01-01")
+  dates = as.Date(dates,origin="1970-01-01")
   dates = dates[!weekdays(dates) %in% c('Saturday','Sunday')]
   if(!is.null(from)) dates <- dates[dates>=from]
   if(!is.null(to)) dates <- dates[dates<=to]
-
+  
   return(dates)
 }
 
