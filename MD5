@@ -1,8 +1,8 @@
-ae01dad0b5175baaf009a39907a7b67c *DESCRIPTION
+f7b89ca783ad434dcc218db6c74c3bdc *DESCRIPTION
 69fa9e4aae2bb2ee411a4241389071b6 *NAMESPACE
-010eec142432c3596c38ee768af6c152 *NEWS.md
+2e45a69abf9ad91a66d0fb0318302cd5 *NEWS.md
 d38a088082ac3a19ff8b824a98a210af *R/CountingDates.R
-d0e803030bde5145de1d3cf4e122a650 *R/DateManipulation.R
+d9b81ebb4b24d451c1de30a0e72b9a9c *R/DateManipulation.R
 218673302f3758c79661d1de6fd3a58d *R/data.R
 47a2cabcd95ed47fb6124d3c9245b170 *R/onAttach.R
 47a7c8ce5fddf449eec5676f093d0ab8 *R/onLoad.R
@@ -20,10 +20,10 @@ c5de7325f876b16dd5891063c1bc6f27 *data/wdLDN.rda
 f7238229745e1f459ef9f2d26b38ca88 *data/wdNYGB.rda
 f5b911ef18d11c382ed348a212d8c109 *inst/doc/quantdates.R
 6a919dae1ae5f90902bad50b517297ac *inst/doc/quantdates.Rmd
-8b1b5ea70ee2d935e896f09842212466 *inst/doc/quantdates.html
-b8f6296da74384458562a4119a117185 *man/AddBusinessDays.Rd
+34c1ef0dfc6744eef1c0010c7e113014 *inst/doc/quantdates.html
+4423416c05caaff2e3830f3b051d9fb9 *man/AddBusinessDays.Rd
 fb3ab7b97f13d43151909334bdb91dcd *man/AddDate.Rd
-9410e21e0afadb4ce404cf0555ce9dbb *man/BusinessDays.Rd
+93e0ab5aa0c0351dede1f3e28520ecbf *man/BusinessDays.Rd
 67ed6ef3ab46448c9c9b7f515498e0d5 *man/LastDayOfMonth.Rd
 95948a3ef782f1b7776d652652a17a91 *man/NumExcel2DateR.Rd
 a325b61a2b10f4630b5f8b2385f285d1 *man/NumR2DateR.Rd

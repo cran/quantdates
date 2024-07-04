@@ -12,7 +12,7 @@
 
 <meta name="author" content="Julian Chitiva" />
 
-<meta name="date" content="2024-06-28" />
+<meta name="date" content="2024-07-03" />
 
 <title>quantdates</title>
 
@@ -62,7 +62,7 @@ ul.task-list{list-style: none;}
 
 <h1 class="title toc-ignore">quantdates</h1>
 <h4 class="author">Julian Chitiva</h4>
-<h4 class="date">2024-06-28</h4>
+<h4 class="date">2024-07-03</h4>
 
 
 <div id="TOC">
@@ -101,20 +101,20 @@ obtain business days for a given city calendar.</p>
 <div id="add-date" class="section level3">
 <h3>Add Date</h3>
 <pre class="r"><code>AddDate(date = Sys.Date(),addDays=14,addMonths=2,addYears=3)
-#&gt; [1] &quot;2027-09-12&quot;</code></pre>
+#&gt; [1] &quot;2027-09-17&quot;</code></pre>
 <pre class="r"><code>AddDate(date = &#39;2019-10-04&#39;,addDays=14,addMonths=2,addYears=3)
 #&gt; [1] &quot;2022-12-18&quot;</code></pre>
 </div>
 <div id="add-business-days" class="section level3">
 <h3>Add Business Days</h3>
 <pre class="r"><code>AddBusinessDays(date = Sys.Date(),numDate = 15,loc = &#39;NY&#39;)
-#&gt; [1] &quot;2024-07-22&quot;</code></pre>
+#&gt; [1] &quot;2024-07-25&quot;</code></pre>
 <pre class="r"><code>AddBusinessDays(date = &#39;2020-10-03&#39;,numDate = 15,loc = &#39;NY&#39;)
 #&gt; [1] &quot;2020-10-23&quot;</code></pre>
 <pre class="r"><code>AddBusinessDays(date = Sys.Date(),numDate = 15,loc = &#39;BOG&#39;)
-#&gt; [1] &quot;2024-07-22&quot;</code></pre>
+#&gt; [1] &quot;2024-07-24&quot;</code></pre>
 <pre class="r"><code>AddBusinessDays(date = Sys.Date(),numDate = 15,loc = &#39;LDN&#39;)
-#&gt; [1] &quot;2024-07-19&quot;</code></pre>
+#&gt; [1] &quot;2024-07-24&quot;</code></pre>
 </div>
 <div id="last-day-of-month" class="section level3">
 <h3>Last Day of Month</h3>
@@ -142,9 +142,9 @@ obtain business days for a given city calendar.</p>
 <div id="num-to-date" class="section level3">
 <h3>Num to Date</h3>
 <pre class="r"><code>NumR2DateR(as.numeric(Sys.Date()))
-#&gt; [1] &quot;2024-06-28&quot;</code></pre>
+#&gt; [1] &quot;2024-07-03&quot;</code></pre>
 <pre class="r"><code>NumExcel2DateR(as.numeric(Sys.Date()))
-#&gt; [1] &quot;1954-06-27&quot;</code></pre>
+#&gt; [1] &quot;1954-07-02&quot;</code></pre>
 </div>
 </div>
 <div id="counting-dates" class="section level2">
